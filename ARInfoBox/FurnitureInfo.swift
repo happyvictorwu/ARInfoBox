@@ -9,11 +9,17 @@
 import Foundation
 
 public struct Furniture {
-    var modelName: String = "unknow"
-    var actionInteractList: [Action] = []
-    var costTime: Int = 0
+    public var modelName: String
+    public var actionInteractList: [Action]
+    public var costTime: Int
     
-    mutating func resetItself() {
+    public init() {
+        modelName = "unknow"
+        actionInteractList = []
+        costTime = 0
+    }
+    
+    public mutating func resetItself() {
         modelName = "unknow"
         actionInteractList.removeAll()
         costTime = 0

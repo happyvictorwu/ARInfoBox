@@ -9,15 +9,20 @@
 import Foundation
 
 public struct MemoryInfo {
-    var memoryData: [Double] = []
-    var timeData: [String] = []
+    public var memoryData: [Double]
+    public var timeData: [String]
     
-    func isEmpty() -> Bool {
+    public init() {
+        memoryData = []
+        timeData = []
+    }
+    
+    public func isEmpty() -> Bool {
         guard memoryData.count == timeData.count else { print("check memoryData no equial to timeData.count"); return true}
         return memoryData.isEmpty
     }
     
-    mutating func resetAll() {
+    public mutating func resetAll() {
         self.memoryData.removeAll()
         self.timeData.removeAll()
     }

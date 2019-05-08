@@ -9,15 +9,20 @@
 import Foundation
 
 public struct CpuInfo {
-    var cpuData: [Double] = []
-    var timeData: [String] = []
+    public var cpuData: [Double]
+    public var timeData: [String]
     
-    func isEmpty() -> Bool {
+    public init() {
+        cpuData = []
+        timeData = []
+    }
+    
+    public func isEmpty() -> Bool {
         guard cpuData.count == timeData.count else { print("check cpuData.count(\(cpuData.count)) no equial to timeData.count(\(timeData.count))"); return true}
         return cpuData.isEmpty
     }
     
-    mutating func resetAll() {
+    public mutating func resetAll() {
         self.cpuData.removeAll()
         self.timeData.removeAll()
     }

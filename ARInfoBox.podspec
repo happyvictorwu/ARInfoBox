@@ -16,7 +16,7 @@ Pod::Spec.new do |spec|
   #
 
   spec.name         = "ARInfoBox"
-  spec.version      = "0.0.2"
+  spec.version      = "0.0.4"
   spec.summary      = "Collect user infomation in ARKit."
 
   # This description is used to generate tags and improve search results.

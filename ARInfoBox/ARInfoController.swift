@@ -31,7 +31,7 @@ open class ARInfoController {
     var memoryList: MemoryInfo  // 内存信息
     
     // Static Info
-    let appId: String = "85d4a553-ee8d-4136-80ab-2469adcae44d"
+    let appId: String   // 需要初始化
     let appVersion:String = "2.0"
     let deviceId: String = "iOS"
     let urlServer: String = "http://222.201.145.166:8421/"
@@ -47,6 +47,16 @@ open class ARInfoController {
     
     
     public init() {
+        appId = "85d4a553-ee8d-4136-80ab-2469adcae44d"
+        currentTime = 0
+        timeInterval = 2
+        
+        cpuList = CpuInfo.init()
+        memoryList = MemoryInfo.init()
+    }
+    
+    public init(appId id: String) {
+        appId = id
         currentTime = 0
         timeInterval = 2
         

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CpuInfo {
+public struct CpuInfo {
     var cpuData: [Double] = []
     var timeData: [String] = []
     
@@ -23,7 +23,7 @@ struct CpuInfo {
     }
 }
 
-func hostCPULoadInfo() -> host_cpu_load_info? {
+public func hostCPULoadInfo() -> host_cpu_load_info? {
     let HOST_CPU_LOAD_INFO_COUNT = MemoryLayout<host_cpu_load_info>.stride/MemoryLayout<integer_t>.stride
     var size = mach_msg_type_number_t(HOST_CPU_LOAD_INFO_COUNT)
     var cpuLoadInfo = host_cpu_load_info()

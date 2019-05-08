@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-enum Action {
+public enum Action {
     case Scaling, Rotate, Add
     
     var description: String {
@@ -21,7 +21,7 @@ enum Action {
     }
 }
 
-class ARInfoController {
+open class ARInfoController {
     
     fileprivate var loadPrevious = host_cpu_load_info() // cpu需要使用
     
@@ -46,7 +46,7 @@ class ARInfoController {
     let interactTail: String = "ArAnalysis/InteractInfo/receiveInteractListInfo"
     
     
-    init() {
+    public init() {
         currentTime = 0
         timeInterval = 2
         
@@ -54,7 +54,7 @@ class ARInfoController {
         memoryList = MemoryInfo.init()
     }
     
-    func start() {
+    public func start() {
         sendStartUpInfo()
         baseMobileInfo()
         Timer.scheduledTimer(timeInterval: Double(self.timeInterval), target: self, selector: Selector(("uploadAll")), userInfo: nil, repeats: true)
@@ -66,7 +66,7 @@ class ARInfoController {
     }
     
     // MARK: - UPLoad
-    func sendStartUpInfo() {
+    public func sendStartUpInfo() {
         
         let urlStart: String = urlServer + startTail
         
@@ -88,7 +88,7 @@ class ARInfoController {
         print("startInfo uploaded")
     }
     
-    func uploadCPU(cpu: CpuInfo) {
+    public func uploadCPU(cpu: CpuInfo) {
         guard !cpu.isEmpty() else { return }
         
         let urlCPU = urlServer + CPUTail
@@ -111,7 +111,7 @@ class ARInfoController {
     }
     
     // Memory and Frame
-    func uploadMemory(memory: MemoryInfo) {
+    public func uploadMemory(memory: MemoryInfo) {
         guard !memory.isEmpty() else { return }
         
         let urlMemory = urlServer + memoryTail
@@ -148,7 +148,7 @@ class ARInfoController {
         print("frame uploaded")
     }
     
-    func uploadGazeObject(modelName: String, gazeTime: Int) {
+    public func uploadGazeObject(modelName: String, gazeTime: Int) {
         let urlGaze = urlServer + gazeTail
         
         let parameters: Parameters = [
@@ -165,7 +165,7 @@ class ARInfoController {
     }
     
     // work for TriggerCount
-    func countAction(in furniture: [Action], with action: Action) -> Int {
+    public func countAction(in furniture: [Action], with action: Action) -> Int {
         var ans = 0
         
         for item in furniture {
@@ -177,7 +177,7 @@ class ARInfoController {
         return ans
     }
     
-    func uploadTriggerCount(modelAction: [Action]) {    // Action only would be Add Scaling Rotate
+    public func uploadTriggerCount(modelAction: [Action]) {    // Action only would be Add Scaling Rotate
         // calculate the number of all Action
         let ScalingCount: Int = countAction(in: modelAction, with: Action.Scaling)
         let RotateCount: Int = countAction(in: modelAction, with: Action.Rotate)
@@ -204,7 +204,7 @@ class ARInfoController {
         
     }
     
-    func uploadInteractionLostInfo(modelName: String, methodList: [Action]) {
+    public func uploadInteractionLostInfo(modelName: String, methodList: [Action]) {
         let urlInteraction = urlServer + interactTail
         
         var resArr = [[String: String]]()
@@ -236,21 +236,21 @@ class ARInfoController {
     }
     
     // Custom post method by Alamofire post
-    func requestPost(with url: String, by parameters: Parameters) {
+    public func requestPost(with url: String, by parameters: Parameters) {
         Alamofire.request(url, method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { response in
             debugPrint(response)
         }
     }
     
     // MARK: - CPU and Memory
-    func baseMobileInfo() {
+    public func baseMobileInfo() {
         Timer.scheduledTimer(timeInterval: Double(self.timeInterval), target: self, selector: Selector(("collectMobileInfo")), userInfo: nil, repeats: true)
         
         Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: Selector(("calculateSeconds")), userInfo: nil, repeats: true)
     }
     
     //Get CPU
-    func cpuUsage() -> (system: Double, user: Double, idle : Double, nice: Double){
+    public func cpuUsage() -> (system: Double, user: Double, idle : Double, nice: Double){
         let load = hostCPULoadInfo();
         
         let usrDiff: Double = Double((load?.cpu_ticks.0)! - loadPrevious.cpu_ticks.0);
@@ -289,7 +289,7 @@ class ARInfoController {
     }
     
     // MARK: - Helper
-    func calculateUnixTimestamp() -> String {
+    public func calculateUnixTimestamp() -> String {
         let timestamp = Int(NSDate().timeIntervalSince1970)
         return String(timestamp * 1000)
     }
@@ -297,7 +297,7 @@ class ARInfoController {
     
 }
 
-extension Int {
+public extension Int {
     /*这是一个内置函数
      lower : 内置为 0，可根据自己要获取的随机数进行修改。
      upper : 内置为 UInt32.max 的最大值，这里防止转化越界，造成的崩溃。

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MemoryInfo {
+public struct MemoryInfo {
     var memoryData: [Double] = []
     var timeData: [String] = []
     
@@ -24,7 +24,7 @@ struct MemoryInfo {
     
 }
 
-struct ApplicationMemoryCurrentUsage {
+public struct ApplicationMemoryCurrentUsage {
     
     var usage : Double = 0.0
     var total : Double = 0.0
@@ -35,7 +35,7 @@ struct ApplicationMemoryCurrentUsage {
     }
 }
 
-func report_memory()->ApplicationMemoryCurrentUsage {
+public func report_memory()->ApplicationMemoryCurrentUsage {
     var info = mach_task_basic_info()
     var count = mach_msg_type_number_t(MemoryLayout<mach_task_basic_info>.size)/4
     

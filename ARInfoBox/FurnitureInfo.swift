@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Furniture {
+public struct Furniture {
     var modelName: String = "unknow"
     var actionInteractList: [Action] = []
     var costTime: Int = 0

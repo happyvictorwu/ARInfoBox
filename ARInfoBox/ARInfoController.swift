@@ -86,7 +86,7 @@ open class ARInfoController {
             "appVersion": appVersion,
             "deviceId": deviceId,
             "appPackage": "com.victor",
-            "osVersion": UIDevice.current.systemVersion,
+            "osVersion": "iOS" + UIDevice.current.systemVersion,
             "manufacturer": "apple",
             "accessType": "Wi-Fi",
             "cpu": "A12",

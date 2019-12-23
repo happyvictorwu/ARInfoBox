@@ -1,4 +1,4 @@
-# AR应用监控使用指南
+# AR应用监控使用指南 [（集成的Demo演示见另一个仓库）](https://github.com/happy-yuxuan/ARPuttingGoods)
 ## 一、准备工作
 ### 1.1、获取appId
 * 注册一个用户帐号，创建一个对应的APP应用，创建完成后会生成一个唯一标识符appId，请记下这个标识符，在后面的APP开发中会使用到。

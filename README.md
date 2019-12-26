@@ -82,8 +82,7 @@
 
         arCollection.uploadTriggerCount(modelAction: [Action])
         
-<span id="3.3">
-* **注： Action内部为动作类型的枚举，枚举用户常用动作（Scaling、Rotate、Add）用户想添加自定义动作可对Action自行扩展，Action内部结构格式为：**
+* 注： Action内部为动作类型的枚举，枚举用户常用动作（Scaling、Rotate、Add）用户想添加自定义动作可对Action自行扩展，Action内部结构格式为：
 
         public enum Action {
             case Scaling, Rotate, Add
@@ -112,4 +111,4 @@
 
         arCollection.uploadTriggerCount(modelAction: [Action])
         
-* **祝： 每次触发行为时， 添加对应Action动作或[3.3节中的自定义行为](#3.3)， 最后通过此接口上报服务器。**
+* **注： 每次触发行为时， 添加对应Action动作或[3.3节中的自定义行为](#3.3)， 最后通过此接口上报服务器。**
